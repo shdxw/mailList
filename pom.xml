@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.test</groupId>
-    <artifactId>mailList</artifactId>
+    <artifactId>maillist</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
     <name>maillist</name>
@@ -44,10 +44,10 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>tracker</finalName>
+                            <finalName>maillist</finalName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.test.mailList.MainUI</mainClass>
+                                    <mainClass>com.test.maillist.MainUI</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
