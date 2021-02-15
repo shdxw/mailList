@@ -5,6 +5,16 @@ import java.util.stream.Collectors;
 
 public class UserRecycler {
 
+    public static boolean valid(ArrayList<User> users) {
+        for (User user : users) {
+            HashSet<String> set = new HashSet<>(user.getMails());
+            if (set.size() != user.getMails().size()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static ArrayList<User> recycle(ArrayList<User> users) {
         HashMap<String, String> usersMap = new HashMap<>();
         HashMap<String,ArrayList<String>> userTo = new HashMap<>();
