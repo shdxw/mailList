@@ -1,15 +1,13 @@
 package com.test.maillist;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
 public class User {
     private String name;
-    private ArrayList<String> mails;
+    private List<String> mails;
 
-    public User(String name, ArrayList<String> mails) {
+    public User(String name, List<String> mails) {
         this.name = name;
         this.mails = mails;
     }
@@ -18,7 +16,7 @@ public class User {
         return name;
     }
 
-    public ArrayList<String> getMails() {
+    public List<String> getMails() {
         return mails;
     }
 
@@ -43,8 +41,5 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getMails());
-    }
-
-    public static void main(String[] args) {
     }
 }

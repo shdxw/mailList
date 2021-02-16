@@ -17,8 +17,8 @@ public class UserRecyclerTest {
         User user3 = new User("3", new ArrayList<>(Arrays.asList("xyz@pisem.net","vasya@pupkin.com")));
         User user4 = new User("4", new ArrayList<>(Arrays.asList("ups@pisem.net","aaa@bbb.ru")));
         User user5 = new User("5", new ArrayList<>(Arrays.asList("xyz@pisem.net")));
-        ArrayList<User> res = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5));
-        res = UserRecycler.recycle(res);
+        List<User> res = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5));
+        UserRecycler.recycle(res);
         for (User re : res) {
             System.out.println(re.toString());
         }
@@ -31,7 +31,7 @@ public class UserRecyclerTest {
         User user3 = new User("3", new ArrayList<>(Arrays.asList("xyz@pisem.net","vasya@pupkin.com")));
         User user4 = new User("4", new ArrayList<>(Arrays.asList("ups@pisem.net","aaa@bbb.ru")));
         User user5 = new User("5", new ArrayList<>(Arrays.asList("xyz@pisem.net")));
-        ArrayList<User> res = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5));
+        List<User> res = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5));
         assertTrue(UserRecycler.valid(res));
     }
 
@@ -42,7 +42,7 @@ public class UserRecyclerTest {
         User user3 = new User("3", new ArrayList<>(Arrays.asList("xyz@pisem.net","vasya@pupkin.com")));
         User user4 = new User("4", new ArrayList<>(Arrays.asList("ups@pisem.net","aaa@bbb.ru")));
         User user5 = new User("5", new ArrayList<>(Arrays.asList("xyz@pisem.net","xyz@pisem.net")));
-        ArrayList<User> res = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5));
+        List<User> res = new ArrayList<>(Arrays.asList(user1, user2, user3, user4, user5));
         assertFalse(UserRecycler.valid(res));
     }
 
@@ -50,9 +50,9 @@ public class UserRecyclerTest {
     public void testWithoutMatch() {
         User user1 = new User("1", new ArrayList<>(Arrays.asList("lol@mail.ru","xxx@ya.ru","foo@gmail.com")));
         User user2 = new User("2", new ArrayList<>(Arrays.asList("ups@pisem.net")));
-        ArrayList<User> res = new ArrayList<>(Arrays.asList(user1, user2));
-        ArrayList<User> res2 = new ArrayList<>(Arrays.asList(user1, user2));
-        res = UserRecycler.recycle(res);
+        List<User> res = new ArrayList<>(Arrays.asList(user1, user2));
+        List<User> res2 = new ArrayList<>(Arrays.asList(user1, user2));
+        UserRecycler.recycle(res);
         assertEquals(res, res2);
     }
 
@@ -60,9 +60,9 @@ public class UserRecyclerTest {
     public void testWithMatch() {
         User user1 = new User("1", new ArrayList<>(Arrays.asList("lol@mail.ru","xxx@ya.ru","foo@gmail.com")));
         User user2 = new User("2", new ArrayList<>(Arrays.asList("ups@pisem.net","xxx@ya.ru")));
-        ArrayList<User> res = new ArrayList<>(Arrays.asList(user1, user2));
-        ArrayList<User> res2 = new ArrayList<>(Arrays.asList(user1, user2));
-        res = UserRecycler.recycle(res);
+        List<User> res = new ArrayList<>(Arrays.asList(user1, user2));
+        List<User> res2 = new ArrayList<>(Arrays.asList(user1, user2));
+        UserRecycler.recycle(res);
         assertNotEquals(res, res2);
     }
 }

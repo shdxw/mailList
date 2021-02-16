@@ -3,23 +3,17 @@ package com.test.maillist;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Docworker {
-    private ArrayList<User> users;
 
-    public Docworker() {
+    private List<User> users;
 
-    }
-
-    public ArrayList<User> readUsers() {
-        ArrayList<User> useri = new ArrayList<>();
-        try {
-            File file = new File("file.txt");
-            FileReader fr = new FileReader(file);
-            BufferedReader reader = new BufferedReader(fr);
-            // считаем сначала первую строку
+    public List<User> readUsers() {
+        List<User> useri = new ArrayList<>();
+        File file = new File("file.txt");
+        try (FileReader fr = new FileReader(file); BufferedReader reader = new BufferedReader(fr)){
             String line = reader.readLine();
-
             while (line != null) {
                 //System.out.println(line);
                 if (!checkUser(line)) {
@@ -42,28 +36,28 @@ public class Docworker {
     return useri;
     }
 
-    public void writeUsers(ArrayList<User> users) {
+    public void writeUsers(List<User> users) {
         if (createFile()) {
             writeInfoFile(users);
         }
     }
 
     public void operation() {
-        ArrayList<User> readusers = readUsers();
-        readusers = UserRecycler.recycle(readusers);
+        List<User> readusers = readUsers();
+        UserRecycler.recycle(readusers);
         writeUsers(readusers);
     }
 
     private boolean createFile(){
         try(FileWriter fw = new FileWriter("file2.txt")) {
-            fw.close();
+            System.out.println("создан file2.txt");
+            return true;
         } catch (IOException e) {
             return false;
         }
-        return true;
     }
 
-    public void writeInfoFile(ArrayList<User> users){
+    public void writeInfoFile(List<User> users){
         try(PrintWriter pw = new PrintWriter("file2.txt")) {
             for (User user : users) {
 
@@ -78,7 +72,6 @@ public class Docworker {
                 }
                 pw.println(line);
             }
-            pw.close();
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }
